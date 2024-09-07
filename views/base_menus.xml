@@ -1,0 +1,20 @@
+<odoo>
+    <!--====== First Tier ======-->
+    <menuitem id="menu_hospital"
+              name="Health Care Hospital"
+              web_icon="hospital_management_system.static/description/icon.png"/>
+
+    <!--====== Second Tier =======-->
+    <menuitem id="menu_root_patient"
+              name="Patients"
+              parent="menu_hospital"/>
+
+    <menuitem id="menu_root_department"
+              name="Department"
+              parent="menu_hospital"/>
+
+    <menuitem id="menu_root_doctor"
+              name="Doctor"
+              parent="menu_hospital"
+              groups="hospital_management_system.group_hms_manager"/>
+</odoo>

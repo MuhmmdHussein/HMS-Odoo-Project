@@ -1,0 +1,59 @@
+<odoo>
+
+    <!--===== Module Category ====== -->
+    <record id="hospital_category" model="ir.module.category">
+        <field name="name">HMS</field>
+    </record>
+
+    <!--======= User Group  =====-->
+    <record id="group_hms_user" model="res.groups">
+        <field name="name">HMS User</field>
+        <field name="category_id" ref="hospital_category"/>
+    </record>
+
+    <!--======== Manager Group ======== -->
+    <record id="group_hms_manager" model="res.groups">
+        <field name="name">HMS Manager</field>
+        <field name="category_id" ref="hospital_category"/>
+    </record>
+
+    <!-- Access Control Records for Patient Line -->
+    <!-- User group access to Patient Line: read, write, create, but no delete -->
+    <record id="access_patient_line_user" model="ir.model.access">
+        <field name="name">access_patient_line_user</field>
+        <field name="model_id" ref="model_hms_patient_line"/>
+        <field name="group_id" ref="group_hms_user"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">0</field>
+    </record>
+
+    <!-- Manager group access to Patient Line: full access (read, write, create, delete) -->
+    <record id="access_patient_line_manager" model="ir.model.access">
+        <field name="name">access_patient_line_manager</field>
+        <field name="model_id" ref="model_hms_patient_line"/>
+        <field name="group_id" ref="group_hms_manager"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">1</field>
+    </record>
+
+
+
+      <!-- Manager group access to add.state -->
+    <record id="access_add_state_manager" model="ir.model.access">
+        <field name="name">access_add_state_manager</field>
+        <field name="model_id" ref="model_add_state"/>
+        <field name="group_id" ref="group_hms_manager"/>
+        <field name="perm_read">1</field>
+        <field name="perm_write">1</field>
+        <field name="perm_create">1</field>
+        <field name="perm_unlink">1</field>
+    </record>
+
+</odoo>
+
+
+

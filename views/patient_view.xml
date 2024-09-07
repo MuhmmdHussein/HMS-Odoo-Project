@@ -1,0 +1,112 @@
+<odoo>
+    <!--======== Create Tree View =======-->
+    <record id="patient_tree_view" model="ir.ui.view">
+        <field name="name">patient tree view</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="birth_date"/>
+                <field name="history"/>
+                <field name="CR_ratio"/>
+                <field name="blood_type"/>
+                <field name="PCR"/>
+                <field name="image" string="Profile Picture"/>
+                <field name="address"/>
+                <field name="age" readonly="1"/>
+                <field name="department_id" string="Department"/>
+                <field name="doctor_id"/>
+                <field name="department_capacity" readonly="1"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ====== Create Form View =========-->
+    <record id="patient_form_view" model="ir.ui.view">
+        <field name="name">patient form view</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start" type="object" class="btn-primary" string="Start"
+                            invisible="step in ('in_progress', 'complete')"/>
+                    <button name="action_progress" type="object" class="btn-secondary" string="In Progress"
+                            invisible="step != 'start'"/>
+                    <button name="action_complete" type="object" class="btn-success" string="Complete"
+                            invisible="step != 'in_progress'"/>
+                    <button name="action_add_wizard" type="object" class="btn-success" string="Add Update"/>
+
+                    <field name="step" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="General Info" colspan="2">
+                            <group>
+                                <field name="first_name" required="1"/>
+                                <field name="last_name" required="1"/>
+                                <field name="email" required="1"/>
+                                <field name="birth_date"/>
+                                <field name="history"/>
+                                <field name="CR_ratio" required="1"/>
+                                <field name="blood_type"/>
+                                <field name="PCR"/>
+                                <field name="state"/>
+                            </group>
+                            <group>
+                                <field name="image" widget="image"/>
+                                <field name="address"/>
+                                <field name="age"/>
+                                <field name="department_id"/>
+                                <field name="doctor_id" groups="hospital_management_system.group_hms_manager"/>
+                                <field name="department_capacity" readonly="1"/>
+                            </group>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Log History">
+                            <field name="log_history_id">
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="created_by"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--======== Create Search View ========-->
+    <record id="patient_search_view" model="ir.ui.view">
+        <field name="name">patient_search_view</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="department_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ========Create Action ========-->
+    <record id="patient_action" model="ir.actions.act_window">
+        <field name="name">HMS Patient</field>
+        <field name="res_model">hms.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="patient_tree_view"/>
+    </record>
+
+    <!--======== Create Menu Item =======-->
+    <menuitem id="menuitem_hms_patient"
+              name="Patients"
+              parent="menu_root_patient"
+              action="patient_action"/>
+</odoo>

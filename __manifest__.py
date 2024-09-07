@@ -1,0 +1,21 @@
+{
+    'name': "Hospital Management System",
+    'description': "A comprehensive hospital management system.",
+    'author': 'Mohamed Hussein',
+    'category': "Services",
+    'version': "17.0.0.1.0",
+    'depends': ['base', 'crm', 'sale_management'],
+    'application': True,
+    'data': [
+        'security/groups.xml',
+        'security/ir.model.access.csv',
+        'views/base_menus.xml',
+        'views/patient_view.xml',
+        'views/department_view.xml',
+        'views/doctor_view.xml',
+        'views/res_partner_view.xml',
+        'views/partner_list_view.xml',
+        'wizard/add_state_wizard.xml',
+        'report/patient_report.xml',
+    ],
+}

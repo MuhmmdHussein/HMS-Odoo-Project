@@ -1,0 +1,54 @@
+<odoo>
+    <!--==== Create Tree View ====-->
+    <record id="department_tree_view" model="ir.ui.view">
+        <field name="name">hms_department_tree_view</field>
+        <field name="model">hms.department</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="Capacity"/>
+                <field name="Is_opened"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--===== Create Form View =====-->
+    <record id="department_form_view" model="ir.ui.view">
+        <field name="name">hms.form.view</field>
+        <field name="model">hms.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="General Info">
+                        <field name="name"/>
+                        <field name="Capacity"/>
+                        <field name="Is_opened"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--===== Create Search View ======-->
+    <record id="department_search_view" model="ir.ui.view">
+        <field name="name">hms_department_search_view</field>
+        <field name="model">hms.department</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!--======= Create Action  ========-->
+    <record id="department_action" model="ir.actions.act_window">
+        <field name="name">Department</field>
+        <field name="res_model">hms.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menuitem_hms_department"
+              name="Department"
+              parent="menu_root_department"
+              action="department_action"/>
+</odoo>
